@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<style>
+    body {
+        padding: 0;
+        margin: 0;
+        font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+    }
+
+    .form {
+        width: 70%;
+        padding: 40px;
+        background-color: #eee;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        border-radius: 30px;
+        margin: 30px auto;
+    }
+
+    .input {
+        width: 70%;
+        height: 30px;
+        padding: 12px 16px;
+        font-size: 18px;
+        border: 2px solid #ddd;
+        border-radius: 10px;
+        outline: none;
+        transition: 0.3s ease;
+        box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
+    }
+
+    .input:focus {
+        border-color: #007bff;
+        box-shadow: 0 0 10px rgba(0, 123, 255, 0.3);
+        transform: scale(1.02);
+    }
+
+    ::placeholder {
+        color: #aaa;
+        transition: color 0.3s ease;
+    }
+
+    .input:focus::placeholder {
+        color: transparent;
+    }
+
+    .add {
+        padding: 15px;
+        background-color: orangered;
+        font-weight: 600;
+        font-size: 16px;
+        text-transform: capitalize;
+        border-radius: 20px;
+    }
+
+    .tasks {
+        background-color: #eee;
+        width: 70%;
+        padding: 40px;
+        height: fit-content;
+        margin: 40px auto;
+        border-radius: 50px;
+        margin-top: -10px;
+    }
+
+    .Task {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: 10px;
+    }
+
+    .TaskP {
+        background-color: white;
+        width: 70%;
+        padding: 30px;
+        border-radius: 25px;
+    }
+
+    .remove {
+        padding: 15px;
+        border-radius: 10px;
+        background-color: red;
+        font-weight: 700;
+        font-size: 16px;
+    }
+</style>
+
+<body>
+    <div class="container">
+        <div class="form">
+            <input type="text" id="myInput" placeholder="write..." class="input">
+            <input type="submit" class="add" value="add Task" onclick="addTask()">
+        </div>
+        <div class="tasks"></div>
+    </div>
+</body>
+
+<script>
+    let input = document.querySelector('.input');
+    let tasks = document.querySelector('.tasks');
+    let TaskBtn = document.querySelector('.add');
+    window.onload = function () {
+        for (i = 0; i < localStorage.length; i++) {
+            let key = localStorage.key(i);
+            if (key.startsWith('task_')) {
+                let value = localStorage.getItem(key);
+                let MyDiv = document.createElement('div');
+                MyDiv.className = 'Task';
+                let MyP = document.createElement('p');
+                MyP.className = 'TaskP';
+                MyP.textContent = value;
+                let btn = document.createElement('button');
+                btn.className = 'remove';
+                btn.textContent = 'Remove';
+
+                // append
+                MyDiv.appendChild(MyP);
+                MyDiv.appendChild(btn);
+                tasks.appendChild(MyDiv);
+                // remove btn 
+                btn.onclick = function () {
+                    MyDiv.remove();
+                    localStorage.removeItem(key);
+                }
+            }
+        }
+    }
+    function addTask() {
+        if (input.value !== "") {
+            let MyDiv = document.createElement('div');
+            MyDiv.className = 'Task';
+            let MyP = document.createElement('p');
+            MyP.className = 'TaskP';
+            MyP.textContent = input.value;
+            let btn = document.createElement('button');
+            btn.className = 'remove';
+            btn.textContent = 'Remove';
+
+            // append
+            MyDiv.appendChild(MyP);
+            MyDiv.appendChild(btn);
+            tasks.appendChild(MyDiv);
+            // remove btn 
+            btn.onclick = function () {
+                MyDiv.remove();
+                localStorage.removeItem(key);
+            }
+            input.value = '';
+            let key = `task_${Date.now()}`;
+            window.localStorage.setItem(key,  MyP.textContent); 
+
+        } else {
+            alert('input is empty write something')
+        }
+
+    }
+
+
+
+
+</script>
+
+</html>

@@ -188,11 +188,13 @@
             flex-direction: column;
             gap: 15px;
             height: 160px;
+            
         }
 
         .input {
             width: 100%;
             height: 45px;
+            border-radius: 50px;
         }
 
         .add {
@@ -367,77 +369,7 @@
             }
         }
     }
-    // function addTask() {
-    //     if (input.value !== "") {
-    //         let MyDiv = document.createElement('div');
-    //         MyDiv.className = 'Task';
-
-    //         let inputTask = document.createElement('input');
-    //         inputTask.className = 'inputP';
-    //         inputTask.value = input.value;
-    //         inputTask.setAttribute("readonly", true);
-
-    //         let btn = document.createElement('button');
-    //         btn.className = 'remove';
-    //         btn.textContent = 'Remove';
-
-    //         // edit btn 
-    //         let editBtn = document.createElement('button');
-    //         editBtn.className = 'edit';
-    //         editBtn.textContent = 'Edit';
-
-
-
-
-    //         // append
-    //         MyDiv.appendChild(inputTask);
-    //         MyDiv.appendChild(btn);
-    //         MyDiv.appendChild(editBtn);
-    //         tasks.appendChild(MyDiv);
-
-    //         input.value = '';
-    //         let key = `task_${Date.now()}`;
-    //         window.localStorage.setItem(key, inputTask.value);
-
-    //         // remove btn 
-    //         btn.onclick = function () {
-    //             MyDiv.remove();
-    //             localStorage.removeItem(key);
-    //         }
-
-    //         editBtn.onclick = function () {
-    //             if (inputTask.hasAttribute('readonly')) {
-    //                 inputTask.removeAttribute('readonly');
-
-    //                 let SaveBtn = document.createElement('button');
-    //                 SaveBtn.textContent = 'Save'
-    //                 SaveBtn.className = 'SaveBtn'
-
-    //                 MyDiv.appendChild(SaveBtn);
-    //                 tasks.appendChild(MyDiv);
-
-    //                 btn.style.display = 'none'
-    //                 editBtn.style.display = 'none'
-
-
-    //                 inputTask.focus();
-
-    //                 SaveBtn.onclick = function () {
-    //                     SaveBtn.style.display = 'none'
-    //                     inputTask.setAttribute("readonly", true);
-    //                     btn.style.display = 'block';
-    //                     editBtn.style.display = 'block'
-
-    //                 }
-    //             }
-    //         }
-
-    //     } else {
-    //         alert('input is empty write something')
-    //     }
-
-    // }
-
+   
     function addTask() {
         if (input.value !== "") {
             let MyDiv = document.createElement('div');
